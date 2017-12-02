@@ -1,2 +1,14 @@
-﻿  Assignment_2.vcxproj -> C:\Users\Gaff_000\Documents\college\year_4_modules\game_engine_development\assignments\Assignment_2\Assignment_2\Debug\Assignment_2.exe
+﻿  World.cpp
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(85): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(86): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(90): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(91): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(94): warning C4244: 'argument': conversion from 'double' to 'GLsizei', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(102): warning C4244: 'argument': conversion from 'double' to 'GLsizei', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(102): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(110): warning C4244: 'argument': conversion from 'double' to 'GLsizei', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(110): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(118): warning C4244: 'argument': conversion from 'double' to 'GLsizei', possible loss of data
+c:\users\gaff_000\documents\college\year_4_modules\game_engine_development\assignments\assignment_2\assignment_2\assignment_2\world.cpp(118): warning C4244: 'argument': conversion from 'double' to 'GLint', possible loss of data
+  Assignment_2.vcxproj -> C:\Users\Gaff_000\Documents\college\year_4_modules\game_engine_development\assignments\Assignment_2\Assignment_2\Debug\Assignment_2.exe
   Assignment_2.vcxproj -> C:\Users\Gaff_000\Documents\college\year_4_modules\game_engine_development\assignments\Assignment_2\Assignment_2\Debug\Assignment_2.pdb (Partial PDB)

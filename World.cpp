@@ -10,10 +10,36 @@
 using namespace std;
 
 World* World::s_World = NULL;
+static float xRot = 0.0f;
+static float yRot = 0.0f;
+
+void timerFunc(int value);
+void specialKeys(int key, int x, int y);
+
+void specialKeys(int key, int x, int y) {
+	if (key == GLUT_KEY_UP) xRot--;
+	if (key == GLUT_KEY_DOWN) xRot++;
+
+	if (key == GLUT_KEY_LEFT) yRot--;
+	if (key == GLUT_KEY_RIGHT) yRot++;
+
+	glutPostRedisplay();
+}
+
+void timerFunc(int value) {
+	xRot += 2;
+	yRot -= 2;
+	glutTimerFunc(33, timerFunc, 1);
+
+	glutPostRedisplay();
+}
+
 
 void reshape(int w, int h)
 {
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h); //set the viewportto the current window specifications
+	
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h); //set the viewport to the current window specifications
+	
 	glMatrixMode(GL_PROJECTION); //set the matrix to projection
 
 	glLoadIdentity();
@@ -50,15 +76,57 @@ void World::render()
 {
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	glLoadIdentity();
 
-	Vector3(0, 0, -10).translate();
-	theModel.render();
+	glColor3f(255, 0, 0);
+	glLineWidth(1.0f);
+	glBegin(GL_LINES);
+		glVertex3f(0.0f, -(glutGet(GLUT_WINDOW_HEIGHT) / 2), 0.0f);
+		glVertex3f(0.0f, glutGet(GLUT_WINDOW_HEIGHT) / 2, 0.0f);
+	glEnd();
+
+	glBegin(GL_LINES);
+		glVertex3f(-(glutGet(GLUT_WINDOW_WIDTH) / 2), 0.0f, 0.0f);
+		glVertex3f(glutGet(GLUT_WINDOW_WIDTH) / 2, 0.0f, 0.0f);
+	glEnd();
+
+	glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH) * 0.5, glutGet(GLUT_WINDOW_HEIGHT) * 0.5);		//bottom left
+	glPushMatrix();
+		glTranslatef(0, 0, -10);
+		glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+		glRotatef(yRot, 0.0f, 1.0f, 0.0f);
+		theModel.render();
+	glPopMatrix();
+
+	glViewport(glutGet(GLUT_WINDOW_WIDTH) * 0.5, 0, glutGet(GLUT_WINDOW_WIDTH) * 0.5, glutGet(GLUT_WINDOW_HEIGHT) * 0.5);	//bottom right
+	glPushMatrix();
+		glTranslatef(0, 0, -10);
+		glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+		glRotatef(yRot, 0.0f, 1.0f, 0.0f);
+		theModel.render();
+	glPopMatrix();
+
+	glViewport(glutGet(GLUT_WINDOW_WIDTH) * 0.5, glutGet(GLUT_WINDOW_HEIGHT) * 0.5, glutGet(GLUT_WINDOW_WIDTH) * 0.5, glutGet(GLUT_WINDOW_HEIGHT) * 0.5);	//top right
+	glPushMatrix();
+		glTranslatef(0, 0, -10);
+		glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+		glRotatef(yRot, 0.0f, 1.0f, 0.0f);
+		theModel.render();
+	glPopMatrix();
+
+	glViewport(0, glutGet(GLUT_WINDOW_HEIGHT) * 0.5, glutGet(GLUT_WINDOW_WIDTH) * 0.5, glutGet(GLUT_WINDOW_HEIGHT) * 0.5);	//top left
+	glPushMatrix();
+		glTranslatef(0, 0, -10);
+		glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+		glRotatef(yRot, 0.0f, 1.0f, 0.0f);
+		theModel.render();
+	glPopMatrix();
 
 	glutSwapBuffers();
 }
 
-void World::keyPress(unsigned char ch)
+void World::keyPress(unsigned char key)
 {
 	glutPostRedisplay();
 }
@@ -72,6 +140,7 @@ void World::initialize(int width, int height, std::string name)
 	glutCreateWindow(name.c_str());
 
 	Color::Black.renderClear();
+	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glFrontFace(GL_CCW);
 	glPolygonMode(GL_FRONT, GL_LINE);
@@ -84,10 +153,11 @@ void World::initialize(int width, int height, std::string name)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//glTranslatef(0.0f, 0.0f, -200.0f);
 	glutKeyboardFunc(keyboard);
 	glutReshapeFunc(reshape);
 	glutDisplayFunc(renderScene);
+	glutTimerFunc(33, timerFunc, 1);
+	glutSpecialFunc(specialKeys);
 }
 
 void World::start()
