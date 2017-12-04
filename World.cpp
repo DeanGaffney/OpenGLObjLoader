@@ -7,6 +7,8 @@
 #include "vector3.h"
 #include "world.h"
 #include <algorithm>
+#define _USE_MATH_DEFINES
+#include "math.h"
 
 using namespace std;
 
@@ -40,8 +42,8 @@ void splitScreen() {
 }
 
 void specialKeys(int key, int x, int y) {
-	if (key == GLUT_KEY_UP) worldZoom++;
-	if (key == GLUT_KEY_DOWN) worldZoom--;
+	if (key == GLUT_KEY_UP) worldZoom += 0.1;
+	if (key == GLUT_KEY_DOWN) worldZoom -= 0.1;
 	glutPostRedisplay();
 }
 
@@ -93,15 +95,9 @@ float clampf(float n, float lower, float upper) {
 }
 
 void World::drawScene() {
-	
+
 	worldZoom = clampf(worldZoom, 1.0f, 4.0f);		//clamp the zoom level
-
 	glLoadIdentity();
-
-	glTranslatef(0, 0, -10);
-	glRotatef(worldRotX, 1.0f, 0.0f, 0.0f);		//rotate the viewport
-	glRotatef(worldRotY, 0.0f, 1.0f, 0.0f);		
-	glTranslatef(0, 0, 10);
 
 	glPushMatrix();
 		glRotatef(worldRotX, 1.0f, 0.0f, 0.0f);		//rotate the viewport
