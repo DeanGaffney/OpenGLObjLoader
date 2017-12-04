@@ -36,7 +36,6 @@ ModelObject::ModelObject(istream &is)
 
 void ModelObject::render(std::vector<Vector3> &defaultTable)
 {
-	cout << " rendering " << name << " with " << faces.size() << endl;
 	for (unsigned int i = 0; i < faces.size(); i++)
 	{
 		faces[i].render(defaultTable);

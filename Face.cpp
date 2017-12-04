@@ -6,7 +6,7 @@ using namespace std;
 Face::Face(istream &is)
 {
 	char ch1;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)		//read in the vertices and texture for face
 	{
 		string separator;
 		is >> vertices[i];
@@ -18,12 +18,9 @@ Face::Face(istream &is)
 void Face::render(vector<Vector3> &defaultTable)
 {
 	glBegin(GL_QUADS);
-	for (int i = 0; i<4; i++)
+	for (int i = 0; i<4; i++)		//render the face using quads
 	{
-		glVertex3f(defaultTable[vertices[i] - 1].X,
-			defaultTable[vertices[i] - 1].Y,
-			defaultTable[vertices[i] - 1].Z);
-		cout << defaultTable[vertices[i] - 1].X << " " << defaultTable[vertices[i] - 1].Y << " " << defaultTable[vertices[i] - 1].Z << endl;
+		glVertex3f(defaultTable[vertices[i] - 1].X, defaultTable[vertices[i] - 1].Y, defaultTable[vertices[i] - 1].Z);
 	}
 	glEnd();
 }

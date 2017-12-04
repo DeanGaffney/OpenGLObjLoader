@@ -16,6 +16,7 @@ public:
 	void start();
 
 	void render();
+	void drawScene();
 	void keyPress(unsigned char ch);
 	void loadModel(std::string modelName);
 private:
